@@ -1,7 +1,7 @@
 #!/bin/bash --login
 #PBS -l walltime=04:00:00
 #PBS -l select=1:ncpus=16
-#PBS -N 2018join
+#PBS -N pickotus
 #PBS -A d411-training
 
 cd $PBS_O_WORKDIR
@@ -16,7 +16,15 @@ export TMPDIR=~/qiime_tmp
 echo "loading virtual env"
 source activate qiime
 
-#Closed Reference OTUs Picked
+#Closed Reference OTUs picked against Greengenes database
+
+#2018 picks (10/17 samples)
 pick_closed_reference_otus.py -i ~/2018_02_smb/demultiplex/seqs.fna -o ~/2018_02_smb/OTU18 -a -O 8
+
+#2017 picks (02/17 samples)
+pick_closed_reference_otus.py -i ~/2017_03_smb/demultiplex/seqs.fna -o ~/2017_03_smb/OTU17 -a -O 8
+
+#2016 picks (01/16 samples)
+pick_closed_reference_otus.py -i ~/2016_02_smb/demultiplex/seqs.fna -o ~/2016_02_smb/OTU16 -a -O 8
 
 source deactivate
