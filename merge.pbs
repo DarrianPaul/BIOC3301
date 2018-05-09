@@ -14,7 +14,7 @@ export TMPDIR=~/qiime_tmp
 echo "loading virtualenv"
 source activate qiime
 
-#OTU tables for all samples merged
+#OTU tables for all Core biome (95% abundance) samples merged
 merge_otu_tables.py -i core_table_95_16.biom,core_table_95_17.biom,core_table_95_18.biom -o merged_core_95.biom
 
 #Mapping files for all samples merged
