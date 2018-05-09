@@ -15,6 +15,6 @@ echo "loading virtualenv"
 source activate qiime
 
 #Kruskal-Wallis group significance test
-group_significance.py -i merged_core_95.biom -m merged_map_95.tsv -c Year -o kw.txt
+group_significance.py -i merged_core_95.biom -m merged_map_95.tsv -c Year -o kw2.txt
 
 source deactivate
