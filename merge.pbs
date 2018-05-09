@@ -20,4 +20,4 @@ merge_otu_tables.py -i core_table_95_16.biom,core_table_95_17.biom,core_table_95
 #Mapping files for all samples merged
 merge_mapping_files.py -m map18.tsv,map16.tsv,map17.tsv -o merged_map.tsv
 
-soure deactivate
+source deactivate
