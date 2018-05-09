@@ -14,9 +14,10 @@ export TMPDIR=~/qiime_tmp
 echo "loading virtualenv"
 source activate qiime
 
-#join_paired_ends.py -f Read1.fastq.gz -r Read2.fastq.gz -b Index.fastq.gz -m SeqPrep -o JoinEnds
+#Join Paired Ends 10/17
+join_paired_ends.py -f Read1.fastq.gz -r Read2.fastq.gz -b Index.fastq.gz -m SeqPrep -o JoinEnds
 
-#demultiplex
+#Demultiplex 10/17 
 split_libraries_fastq.py \
 -m map_incomplete.tsv \
 -b ~/2018_02_smb/JoinEnds/seqprep_assembled.fastq_barcodes.fastq \
