@@ -1,0 +1,19 @@
+#!/bin/bash --login
+#PBS -l walltime=04:00:00
+#PBS -l select=1:ncpus=8
+#PBS -N 2018join
+#PBS -A d411-training
+
+cd $PBS_O_WORKDIR
+module load miniconda/python2
+
+# setting temporary directory
+export TMPDIR=~/qiime_tmp
+
+# loading virtualenv
+echo "loading virtualenv"
+source activate qiime
+
+filter_samples_from_otu_table.py -i ~/2018_02_smb/OTU18/CoreBiom/core_table_95.biom -o ~/2018_02_smb/Park/core_table_95_park.biom -m ~/2018_02_smb/map_incomplete.tsv --sample_id_fp ~/2018_02_smb/removeID.txt --negate_sample_id_fp
+
+source deactivate

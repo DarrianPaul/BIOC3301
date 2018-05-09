@@ -1,0 +1,30 @@
+#!/bin/bash --login
+#PBS -l walltime=04:00:00
+#PBS -l select=1:ncpus=8
+#PBS -N 2018join
+#PBS -A d411-training
+
+cd $PBS_O_WORKDIR
+module load miniconda/python2
+
+# setting temporary directory
+export TMPDIR=~/qiime_tmp
+
+# loading virtualenv
+echo "loading virtualenv"
+source activate qiime
+
+#join_paired_ends.py -f Read1.fastq.gz -r Read2.fastq.gz -b Index.fastq.gz -m SeqPrep -o JoinEnds
+
+#demultiplex
+split_libraries_fastq.py \
+-m map_incomplete.tsv \
+-b ~/2018_02_smb/JoinEnds/seqprep_assembled.fastq_barcodes.fastq \
+-i ~/2018_02_smb/JoinEnds/seqprep_assembled.fastq.gz \
+-o ./demultiplex `#pick any name or path here` \
+-q 19 `#base calls with a Q-score of 19 or lower are considered low quality` \
+--rev_comp_barcode `#required for Golay error correction` \
+--rev_comp_mapping_barcodes `#required for Golay error correction`
+
+
+source deactivate

@@ -1,0 +1,22 @@
+#!/bin/bash --login
+#PBS -l walltime=04:00:00
+#PBS -l select=1:ncpus=16
+#PBS -N 2016core
+#PBS -A d411-training
+
+cd $PBS_O_WORKDIR
+
+#load modules
+module load miniconda/python2
+
+# setting temporary directory
+export TMPDIR=~/qiime_tmp
+
+# loading virtual env
+echo "loading virtual env"
+source activate qiime
+
+#Core Microbiome
+compute_core_microbiome.py -i ~/2017_03_smb/otus/otu_table.biom -o CoreBiom --min_fraction_for_core 0.50
+
+source deactivate
