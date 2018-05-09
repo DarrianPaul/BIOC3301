@@ -14,22 +14,24 @@ export TMPDIR=~/qiime_tmp
 echo "loading virtualenv"
 source activate qiime
 
-#Join Paired Ends 10/17
-join_paired_ends.py -f Read1.fastq.gz -r Read2.fastq.gz -b Index.fastq.gz -m SeqPrep -o JoinEnds
+#Join Paired Ends 2018 (10/17 samples)
+join_paired_ends.py -f ~/2018_02_smb/Read1.fastq.gz -r ~/2018_02_smb/Read2.fastq.gz -b ~/2018_02_smb/Index.fastq.gz -m ~/2018_02_smb/SeqPrep -o JoinEnds18
 
-#Demultiplex 10/17 samples
+#2017 and 2016 (02/17 and 01/16 samples respectively) ends previously joined.
+
+#Demultiplex 2018 (10/17 samples)
 split_libraries_fastq.py \
--m map_incomplete.tsv \
--b ~/2018_02_smb/JoinEnds/seqprep_assembled.fastq_barcodes.fastq \
--i ~/2018_02_smb/JoinEnds/seqprep_assembled.fastq.gz \
+-m ~/2018_02_smb/map18.tsv \
+-b ~/2018_02_smb/JoinEnds18/seqprep_assembled.fastq_barcodes.fastq \
+-i ~/2018_02_smb/JoinEnds18/seqprep_assembled.fastq.gz \
 -o ~/2018_02_smb/slout \
 -q 20 `#base calls with a Q-score of 19 or lower are considered low quality` \
 --rev_comp_barcode `#required for Golay error correction` \
 --rev_comp_mapping_barcodes `#required for Golay error correction`
 
-#Demultiplex 02/17 samples
+#Demultiplex 2017 (02/17 samples)
 split_libraries_fastq.py \
--m ~/2017_03_smb/map.tsv \
+-m ~/2017_03_smb/map17.tsv \
 -i ~/2017_03_smb/Read1.fastq.gz \
 -b ~/2017_03_smb/Index.fastq.gz \
 -o ~/2017_03_smb/slout \
@@ -38,12 +40,12 @@ split_libraries_fastq.py \
 --rev_comp_mapping_barcodes \
 --barcode_type 12
 
-#Demultiplex 01/16 samples
+#Demultiplex 2016 (01/16 samples)
 split_libraries_fastq.py \
--m ~/2017_03_smb/map.tsv \
--i ~/2017_03_smb/Read1.fastq.gz \
--b ~/2017_03_smb/Index.fastq.gz \
--o ~/2017_03_smb/slout \
+-m ~/2016_02_smb/map16.tsv \
+-i ~/2016_02_smb/Read1.fastq.gz \
+-b ~/2016_02_smb/Index.fastq.gz \
+-o ~/2016_02_smb/slout \
 -q 20 \
 --rev_comp_barcode \
 --rev_comp_mapping_barcodes \
