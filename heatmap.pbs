@@ -14,10 +14,10 @@ export TMPDIR=~/qiime_tmp
 echo "loading virtualenv"
 source activate qiime
 
-#Create Heatmap
+#Create Core biome (95% abundance) Heatmap pdf
 make_otu_heatmap.py -i merged_core_95_2.biom -o heatmap2.pdf
 
-#Create Heatmap png
+#Create Core biome (95% abundance) Heatmap png
 make_otu_heatmap.py -i merged_core_95_2.biom -o heatmap2.png -g png
 
 source deactivate
