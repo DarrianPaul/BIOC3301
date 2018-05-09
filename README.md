@@ -12,3 +12,8 @@ This is a repository of the scripts and files use for the project titled "Analys
 * heatmap.pbs - generates heatmap of OTUs from 95% abundance merged core microbiome 
 * cda.pbs - performs corde diversity analysis of 95% abundance merged core microbiome 
 * groupsig.pbs - performs Kruskal-Wallis test for group significance on 95% abundance merged core microbiome 
+
+## Output Files
+* kw2.txt - Kruskal-Wallis group significance test of 95% abundance merged core microbiome
+* heatmap2.pdf - PDF file - heatmap of OTUs from 95% abundance merged core microbiome 
+* heatmap2.png - PNG file - heatmap of OTUs from 95% abundance merged core microbiome 
