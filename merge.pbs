@@ -15,9 +15,9 @@ echo "loading virtualenv"
 source activate qiime
 
 #OTU tables for all Core biome (95% abundance) samples merged
-merge_otu_tables.py -i core_table_95_16.biom,core_table_95_17.biom,core_table_95_18.biom -o merged_core_95.biom
+merge_otu_tables.py -i ~/2018_02_smb/CoreBiom18/core_table_95_16.biom,~/2017_03_smb/CoreBiom17/core_table_95_17.biom,~/2016_02_smb/CoreBiom16/core_table_95_18.biom -o merged_core_95.biom
 
 #Mapping files for all samples merged
-merge_mapping_files.py -m map18.tsv,map16.tsv,map17.tsv -o merged_map.tsv
+merge_mapping_files.py -m ~/2018_02_smb/map18.tsv,~/2016_02_smb/map16.tsv,~/2017_03_smb/map17.tsv -o merged_map.tsv
 
 source deactivate
