@@ -17,7 +17,7 @@ echo "loading virtual env"
 source activate qiime
 
 #Core Diversity Analysis
-core_diversity_analyses.py -o CDA -i merged_core_95_2.biom -m merged_edit.tsv -e 34003 -t ~/2018_02_smb/OTU18/97_otus.tree -a -O 8
+core_diversity_analyses.py -o CDA -i merged_core_95.biom -m merged_map.tsv -e 34003 -t ~/2018_02_smb/OTU18/97_otus.tree -a -O 8
 
 #Sampling depth set at 34003 to analyse all relevant samples
 
