@@ -1,7 +1,7 @@
 #!/bin/bash --login
 #PBS -l walltime=04:00:00
 #PBS -l select=1:ncpus=8
-#PBS -N 2018join
+#PBS -N demultiplex
 #PBS -A d411-training
 
 cd $PBS_O_WORKDIR
@@ -17,15 +17,36 @@ source activate qiime
 #Join Paired Ends 10/17
 join_paired_ends.py -f Read1.fastq.gz -r Read2.fastq.gz -b Index.fastq.gz -m SeqPrep -o JoinEnds
 
-#Demultiplex 10/17 
+#Demultiplex 10/17 samples
 split_libraries_fastq.py \
 -m map_incomplete.tsv \
 -b ~/2018_02_smb/JoinEnds/seqprep_assembled.fastq_barcodes.fastq \
 -i ~/2018_02_smb/JoinEnds/seqprep_assembled.fastq.gz \
--o ./demultiplex `#pick any name or path here` \
--q 19 `#base calls with a Q-score of 19 or lower are considered low quality` \
+-o ~/2018_02_smb/slout \
+-q 20 `#base calls with a Q-score of 19 or lower are considered low quality` \
 --rev_comp_barcode `#required for Golay error correction` \
 --rev_comp_mapping_barcodes `#required for Golay error correction`
 
+#Demultiplex 02/17 samples
+split_libraries_fastq.py \
+-m ~/2017_03_smb/map.tsv \
+-i ~/2017_03_smb/Read1.fastq.gz \
+-b ~/2017_03_smb/Index.fastq.gz \
+-o ~/2017_03_smb/slout \
+-q 20 \
+--rev_comp_barcode \
+--rev_comp_mapping_barcodes \
+--barcode_type 12
+
+#Demultiplex 01/16 samples
+split_libraries_fastq.py \
+-m ~/2017_03_smb/map.tsv \
+-i ~/2017_03_smb/Read1.fastq.gz \
+-b ~/2017_03_smb/Index.fastq.gz \
+-o ~/2017_03_smb/slout \
+-q 20 \
+--rev_comp_barcode \
+--rev_comp_mapping_barcodes \
+--barcode_type 12
 
 source deactivate
